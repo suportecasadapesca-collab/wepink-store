@@ -1,9 +1,68 @@
 const KOREPAY_URL = "https://api.korepay.com.br/v1/transactions";
+const UTMIFY_URL = "https://api.utmify.com.br/api-credentials/orders";
 
 function korepayAuth() {
   const pub = process.env.KOREPAY_PUBLIC_KEY ?? "";
   const sec = process.env.KOREPAY_SECRET_KEY ?? "";
   return "Basic " + Buffer.from(`${pub}:${sec}`).toString("base64");
+}
+
+function nowBR() {
+  return new Date().toISOString().replace("T", " ").slice(0, 19);
+}
+
+async function notifyUtmify({ orderId, totalInCents, customer, items, utm }) {
+  const token = process.env.UTMIFY_API_TOKEN;
+  if (!token) return;
+
+  const body = {
+    orderId: String(orderId),
+    platform: "custom",
+    paymentMethod: "pix",
+    status: "waiting_payment",
+    createdAt: nowBR(),
+    approvedDate: null,
+    refundedAt: null,
+    customer: {
+      name: customer.name,
+      email: customer.email,
+      phone: customer.phone.replace(/\D/g, ""),
+      document: customer.document.replace(/\D/g, ""),
+    },
+    products: items.map((i) => ({
+      id: i.description.toLowerCase().replace(/\s+/g, "-").slice(0, 30),
+      name: i.description,
+      planId: null,
+      planName: null,
+      quantity: i.quantity,
+      priceInCents: i.amount,
+    })),
+    trackingParameters: {
+      utm_source: utm.utm_source || null,
+      utm_medium: utm.utm_medium || null,
+      utm_campaign: utm.utm_campaign || null,
+      utm_content: utm.utm_content || null,
+      utm_term: utm.utm_term || null,
+      src: utm.src || null,
+    },
+    commission: {
+      totalPriceInCents: totalInCents,
+      gatewayFeeInCents: 0,
+      userCommissionInCents: totalInCents,
+    },
+    isTest: false,
+  };
+
+  try {
+    const res = await fetch(UTMIFY_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "x-api-token": token },
+      body: JSON.stringify(body),
+    });
+    console.log("[utmify] status:", res.status);
+  } catch (err) {
+    console.error("[utmify] error:", err);
+  }
 }
 
 const CORS_HEADERS = {
@@ -27,7 +86,7 @@ export const handler = async (event) => {
   }
 
   try {
-    const { customer, items, address } = JSON.parse(event.body ?? "{}");
+    const { customer, items, address, utm = {} } = JSON.parse(event.body ?? "{}");
 
     const totalAmount = items.reduce(
       (sum, i) => sum + i.amount * i.quantity,
@@ -96,6 +155,14 @@ export const handler = async (event) => {
     const qrCodeUrl = qrCodeString
       ? `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(qrCodeString)}`
       : null;
+
+    notifyUtmify({
+      orderId: String(data.id),
+      totalInCents: totalAmount,
+      customer,
+      items,
+      utm,
+    });
 
     return {
       statusCode: 200,
