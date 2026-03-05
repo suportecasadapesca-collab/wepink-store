@@ -578,8 +578,7 @@ export default function Checkout() {
           <img
             src={livePremiadaBanner}
             alt="Live Premiada WePink"
-            className="w-full object-cover object-center"
-            style={{ maxHeight: "220px" }}
+            className="w-full object-contain"
             onError={(e) => {
               (e.target as HTMLImageElement).style.display = "none";
             }}
