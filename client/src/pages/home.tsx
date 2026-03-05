@@ -547,32 +547,13 @@ export default function Home() {
       />
 
       {/* Hero Banner */}
-      <section className="relative w-full" data-testid="section-hero">
-        <div className="relative w-full overflow-hidden" style={{ maxHeight: "600px" }}>
-          <img
-            src="https://webwepinkapp.netlify.app/assets/hero-banner.jpg"
-            alt="Promoção Especial!"
-            className="w-full object-cover object-center"
-            style={{ minHeight: "320px", maxHeight: "600px" }}
-            onError={(e) => {
-              (e.target as HTMLImageElement).style.backgroundColor = "#111";
-            }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/30" />
-          <div className="absolute inset-0 flex flex-col items-start justify-center px-6 md:px-16 lg:px-24">
-            <div className="bg-[#FF0080] px-4 py-2 mb-2 inline-block">
-              <span className="text-white font-extrabold text-xl md:text-3xl lg:text-4xl uppercase leading-tight tracking-wide block">
-                O CARNAVAL MAIS
-              </span>
-              <span className="text-white font-extrabold text-xl md:text-3xl lg:text-4xl uppercase leading-tight tracking-wide block">
-                CHEIROSO DE TODOS
-              </span>
-            </div>
-            <p className="text-white font-extrabold text-4xl md:text-6xl lg:text-8xl lowercase leading-none tracking-tight drop-shadow-lg mt-2">
-              vai começar!
-            </p>
-          </div>
-        </div>
+      <section className="w-full" data-testid="section-hero">
+        <img
+          src="https://wepink.vtexassets.com/assets/vtex.file-manager-graphql/images/bc7f3f98-2edf-47d5-8b0a-1176463dbc44___670ba5d91440ab3cfc3bc22bca21157b.gif"
+          alt="Promoção Especial WePink"
+          className="w-full block"
+          style={{ display: "block", maxWidth: "100%", height: "auto" }}
+        />
       </section>
 
       {/* Countdown */}
