@@ -409,7 +409,7 @@ export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
   const { items, addItem, totalItems } = useCart();
-  const { hours, minutes, seconds } = useCountdown(0 * 3600 + 9 * 60 + 57);
+  const { hours, minutes, seconds } = useCountdown(30 * 60);
 
   function handleBuy(product: CartProduct) {
     addItem(product);
