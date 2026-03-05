@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useLocation } from "wouter";
 import { QrCode, CheckCircle2, ChevronDown, ShieldCheck, Plus, Check, Zap, Tag, Loader2, Copy, CopyCheck } from "lucide-react";
 
@@ -318,6 +318,19 @@ export default function Checkout() {
   const [, navigate] = useLocation();
   const { items, total, addItem, clearCart } = useCart();
 
+  const [utmParams, setUtmParams] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    const p = new URLSearchParams(window.location.search);
+    const keys = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "src"];
+    const found: Record<string, string> = {};
+    for (const k of keys) {
+      const v = p.get(k) || sessionStorage.getItem(`utm_${k}`) || "";
+      if (v) { found[k] = v; sessionStorage.setItem(`utm_${k}`, v); }
+    }
+    setUtmParams(found);
+  }, []);
+
   const [currentStep, setCurrentStep] = useState<Step>(1);
   const [stepError, setStepError] = useState<string | null>(null);
   const [pixReady, setPixReady] = useState(false);
@@ -406,6 +419,7 @@ export default function Checkout() {
               state: form.estado,
               zip_code: form.cep,
             },
+            utm: utmParams,
           }),
         }),
         minDelay,
