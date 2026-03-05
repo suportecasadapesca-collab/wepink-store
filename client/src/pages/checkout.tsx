@@ -9,6 +9,32 @@ function formatPrice(value: number) {
   return "R$ " + value.toFixed(2).replace(".", ",");
 }
 
+function maskName(v: string) {
+  return v.replace(/[^a-zA-ZÀ-ÿ\s]/g, "").slice(0, 60);
+}
+
+function maskCpf(v: string) {
+  const n = v.replace(/\D/g, "").slice(0, 11);
+  if (n.length <= 3) return n;
+  if (n.length <= 6) return `${n.slice(0,3)}.${n.slice(3)}`;
+  if (n.length <= 9) return `${n.slice(0,3)}.${n.slice(3,6)}.${n.slice(6)}`;
+  return `${n.slice(0,3)}.${n.slice(3,6)}.${n.slice(6,9)}-${n.slice(9)}`;
+}
+
+function maskPhone(v: string) {
+  const n = v.replace(/\D/g, "").slice(0, 11);
+  if (n.length <= 2) return n.length ? `(${n}` : "";
+  if (n.length <= 7) return `(${n.slice(0,2)}) ${n.slice(2)}`;
+  if (n.length <= 11) return `(${n.slice(0,2)}) ${n.slice(2,7)}-${n.slice(7)}`;
+  return v;
+}
+
+function maskCep(v: string) {
+  const n = v.replace(/\D/g, "").slice(0, 8);
+  if (n.length <= 5) return n;
+  return `${n.slice(0,5)}-${n.slice(5)}`;
+}
+
 type Step = 1 | 2 | 3;
 
 const ORDER_BUMPS: (CartProduct & { originalPriceValue: number; discountPct: number; highlight: string })[] = [
@@ -365,11 +391,11 @@ export default function Checkout() {
         return setStepError("Preencha um e-mail válido (ex: nome@email.com, sem espaços).");
       if (form.cpf.replace(/\D/g, "").length < 11)
         return setStepError("Preencha um CPF válido com 11 dígitos.");
-      if (!form.telefone.trim())
-        return setStepError("Preencha seu telefone.");
+      if (form.telefone.replace(/\D/g, "").length < 10)
+        return setStepError("Preencha um telefone válido com DDD (ex: (11) 99999-9999).");
     }
     if (currentStep === 2) {
-      if (!form.cep.trim()) return setStepError("Preencha o CEP.");
+      if (form.cep.replace(/\D/g, "").length < 8) return setStepError("Preencha um CEP válido com 8 dígitos.");
       if (!form.rua.trim()) return setStepError("Preencha o endereço.");
       if (!form.numero.trim()) return setStepError("Preencha o número.");
       if (!form.bairro.trim()) return setStepError("Preencha o bairro.");
@@ -574,11 +600,11 @@ export default function Checkout() {
                 <SectionBlock title="Identificação">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="sm:col-span-2">
-                      <InputField label="Nome Completo" id="nome" placeholder="Seu nome completo" required value={form.nome} onChange={(v) => set("nome", v)} />
+                      <InputField label="Nome Completo" id="nome" placeholder="Seu nome completo" required value={form.nome} onChange={(v) => set("nome", maskName(v))} />
                     </div>
-                    <InputField label="E-mail" id="email" type="email" placeholder="seu@email.com" required value={form.email} onChange={(v) => set("email", v)} />
-                    <InputField label="CPF" id="cpf" placeholder="000.000.000-00" required value={form.cpf} onChange={(v) => set("cpf", v)} />
-                    <InputField label="Telefone / WhatsApp" id="telefone" placeholder="(00) 00000-0000" required value={form.telefone} onChange={(v) => set("telefone", v)} />
+                    <InputField label="E-mail" id="email" type="email" placeholder="seu@email.com" required value={form.email} onChange={(v) => set("email", v.trim())} />
+                    <InputField label="CPF" id="cpf" placeholder="000.000.000-00" required value={form.cpf} onChange={(v) => set("cpf", maskCpf(v))} />
+                    <InputField label="Telefone / WhatsApp" id="telefone" placeholder="(00) 00000-0000" required value={form.telefone} onChange={(v) => set("telefone", maskPhone(v))} />
                   </div>
                   {stepError && (
                     <div className="mt-3 flex items-center gap-2 bg-red-50 border border-red-300 rounded-sm px-3 py-2.5" data-testid="text-step-error">
@@ -605,7 +631,7 @@ export default function Checkout() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="flex gap-2 items-end sm:col-span-2">
                       <div className="flex-1">
-                        <InputField label="CEP" id="cep" placeholder="00000-000" required value={form.cep} onChange={(v) => set("cep", v)} />
+                        <InputField label="CEP" id="cep" placeholder="00000-000" required value={form.cep} onChange={(v) => set("cep", maskCep(v))} />
                       </div>
                       <button
                         type="button"
