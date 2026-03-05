@@ -8,7 +8,7 @@ const KITS: CartProduct[] = [
   {
     id: 1,
     name: "Kit Bloquinho da Vivibora VF e 6 Body Splashes",
-    image: "https://webwepinkapp.netlify.app/uploads/prod_69445bf1656e0.png",
+    image: "https://wepink.vtexassets.com/arquivos/ids/163929/kit-1.png",
     badge: "85% OFF",
     badgeType: "off",
     originalPrice: "R$ 459,90",
@@ -20,7 +20,7 @@ const KITS: CartProduct[] = [
   {
     id: 2,
     name: "Kit Bloquinho da Vivibora VF Bloom e 6 Body Splashes",
-    image: "https://webwepinkapp.netlify.app/uploads/prod_69448bc19ab58.png",
+    image: "https://wepink.vtexassets.com/arquivos/ids/163930/kit%202.png",
     badge: "85% OFF",
     badgeType: "off",
     originalPrice: "R$ 459,90",
@@ -32,7 +32,7 @@ const KITS: CartProduct[] = [
   {
     id: 17,
     name: "Kit Moon Desodorante Colônia 100ml e 5 Body Splashes",
-    image: "https://webwepinkapp.netlify.app/uploads/prod_6944ca6030c2a.png",
+    image: "https://wepink.vtexassets.com/arquivos/ids/162259/159354-1200-auto.webp",
     badge: "EXCLUSIVO",
     badgeType: "exclusive",
     originalPrice: "R$ 319,90",
@@ -44,7 +44,7 @@ const KITS: CartProduct[] = [
   {
     id: 5,
     name: "Kit Obsessed Desodorante Colônia 100ml e 5 Body Splashes",
-    image: "https://webwepinkapp.netlify.app/uploads/prod_6944c48eace91.png",
+    image: "https://wepink.vtexassets.com/arquivos/ids/163189/Obsessed-Desodorante-Colonia-100ml_1.webp",
     badge: "EXCLUSIVO",
     badgeType: "exclusive",
     originalPrice: "R$ 280,90",
@@ -59,7 +59,7 @@ const BODY_SPLASH: CartProduct[] = [
   {
     id: 6,
     name: "Kit 5 Body Splashes",
-    image: "https://webwepinkapp.netlify.app/uploads/prod_69449089650fe.png",
+    image: "https://wepink.vtexassets.com/arquivos/ids/163968/kits-0503.webp",
     badge: "79% OFF",
     badgeType: "off",
     originalPrice: null,
@@ -71,7 +71,7 @@ const BODY_SPLASH: CartProduct[] = [
   {
     id: 4,
     name: "Kit Heaven Desodorante Colônia 100ml e 5 Body Splashes",
-    image: "https://webwepinkapp.netlify.app/uploads/prod_6944c42ab881e.jpg",
+    image: "https://wepink.vtexassets.com/arquivos/ids/160239/heaven-3.jpg.jpg",
     badge: "80% OFF",
     badgeType: "off",
     originalPrice: "R$ 280,90",
@@ -83,7 +83,7 @@ const BODY_SPLASH: CartProduct[] = [
   {
     id: 8,
     name: "Kit Queen Pink 100ml e 6 Body Splashes",
-    image: "https://webwepinkapp.netlify.app/uploads/prod_6944c602c1565.png",
+    image: "https://wepink.vtexassets.com/arquivos/ids/162220/159816-1200-auto.webp",
     badge: "77% OFF",
     badgeType: "off",
     originalPrice: "R$ 219,90",
@@ -95,7 +95,7 @@ const BODY_SPLASH: CartProduct[] = [
   {
     id: 13,
     name: "Kit One Touch Desodorante Colônia 100 ml e 5 Body Splashes",
-    image: "https://webwepinkapp.netlify.app/uploads/prod_6944c6cea62f1.jpg",
+    image: "https://wepink.vtexassets.com/arquivos/ids/163222/One-Touch-3.webp",
     badge: "76% OFF",
     badgeType: "off",
     originalPrice: "R$ 199,90",
@@ -110,7 +110,7 @@ const PERFUMARIA: CartProduct[] = [
   {
     id: 14,
     name: "Kit Celebrate Life Desodorante Colônia 100ml e 6 Body Splashes",
-    image: "https://webwepinkapp.netlify.app/uploads/prod_6944c757af8bc.png",
+    image: "https://wepink.vtexassets.com/arquivos/ids/161747/159932-1600-auto.webp",
     badge: "76% OFF",
     badgeType: "off",
     originalPrice: "R$ 199,90",
@@ -122,7 +122,7 @@ const PERFUMARIA: CartProduct[] = [
   {
     id: 16,
     name: "Ember Divinus Desodorante Colônia 100ml - Wepink",
-    image: "https://webwepinkapp.netlify.app/uploads/prod_69447b6036318.webp",
+    image: "https://wepink.vtexassets.com/arquivos/ids/163381/Prancheta-3--1-.webp",
     badge: "62% OFF",
     badgeType: "off",
     originalPrice: "R$ 99,90",
@@ -436,16 +436,7 @@ export default function Home() {
           </button>
 
           <a href="/" className="flex items-center" data-testid="link-logo">
-            <img
-              src="https://webwepinkapp.netlify.app/assets/logo-secondary.svg"
-              alt="Wepink"
-              className="h-6 md:h-7 brightness-0 invert"
-              onError={(e) => {
-                (e.target as HTMLImageElement).style.display = "none";
-                (e.target as HTMLImageElement).parentElement!.innerHTML =
-                  '<span style="color:white;font-weight:900;font-size:1.2rem;letter-spacing:0.15em;">wepink</span>';
-              }}
-            />
+            <span style={{color:"white",fontWeight:900,fontSize:"1.3rem",letterSpacing:"0.05em",fontFamily:"Montserrat,sans-serif"}}>we<span style={{color:"#FF80BF"}}>♥</span></span>
           </a>
 
           <button
@@ -491,14 +482,7 @@ export default function Home() {
 
             <nav className="flex-1 p-4">
               <div className="mb-6">
-                <img
-                  src="https://webwepinkapp.netlify.app/assets/logo-secondary.svg"
-                  alt="Wepink"
-                  className="h-8 mb-6"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).style.display = "none";
-                  }}
-                />
+                <span style={{color:"#FF0080",fontWeight:900,fontSize:"1.5rem",letterSpacing:"0.05em",fontFamily:"Montserrat,sans-serif",display:"block",marginBottom:"1.5rem"}}>we<span style={{color:"#FF0080"}}>♥</span></span>
 
                 {[
                   { label: "Minha conta", icon: User },
