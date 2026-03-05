@@ -41,7 +41,7 @@ const ORDER_BUMPS: (CartProduct & { originalPriceValue: number; discountPct: num
   {
     id: 101,
     name: "Body Splash Blue Crush 200ml",
-    image: "https://webwepinkapp.netlify.app/uploads/prod_69449089650fe.png",
+    image: "https://wepink.vtexassets.com/arquivos/ids/162130/160880-1200-auto.webp",
     badge: "60% OFF",
     badgeType: "off",
     originalPrice: "R$ 69,90",
@@ -56,7 +56,7 @@ const ORDER_BUMPS: (CartProduct & { originalPriceValue: number; discountPct: num
   {
     id: 102,
     name: "Kit 3 Body Splashes Sortidos",
-    image: "https://webwepinkapp.netlify.app/uploads/prod_6944c42ab881e.jpg",
+    image: "https://wepink.vtexassets.com/arquivos/ids/163962/kit-3--1-.webp",
     badge: "70% OFF",
     badgeType: "off",
     originalPrice: "R$ 99,90",
@@ -71,7 +71,7 @@ const ORDER_BUMPS: (CartProduct & { originalPriceValue: number; discountPct: num
   {
     id: 103,
     name: "Perfume Colônia Vivibora 50ml",
-    image: "https://webwepinkapp.netlify.app/uploads/prod_6944c602c1565.png",
+    image: "https://wepink.vtexassets.com/arquivos/ids/160550/vf-bloom-1.jpg.jpg",
     badge: "55% OFF",
     badgeType: "off",
     originalPrice: "R$ 89,90",
@@ -575,7 +575,7 @@ export default function Checkout() {
       <div className="max-w-5xl mx-auto px-4 pt-4">
         <div className="w-full overflow-hidden rounded-sm">
           <img
-            src="https://webwepinkapp.netlify.app/assets/hero-banner-novo.webp"
+            src="https://wepink.vtexassets.com/arquivos/ids/163968/kits-0503.webp"
             alt="Promoção — todo o site com até 72% off"
             className="w-full object-cover object-center"
             style={{ maxHeight: "220px" }}
