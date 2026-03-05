@@ -4,6 +4,7 @@ import { QrCode, CheckCircle2, ChevronDown, ShieldCheck, Plus, Check, Zap, Tag, 
 
 import { useCart } from "@/lib/cart-context";
 import type { CartProduct } from "@/lib/cart-context";
+import livePremiadaBanner from "@assets/promocoesnainternet-Live-Premiada-We-Pink-Virginia-Fonseca-103_1772734928670.jpg";
 
 function formatPrice(value: number) {
   return "R$ " + value.toFixed(2).replace(".", ",");
@@ -575,8 +576,8 @@ export default function Checkout() {
       <div className="max-w-5xl mx-auto px-4 pt-4">
         <div className="w-full overflow-hidden rounded-sm">
           <img
-            src="https://wepink.vtexassets.com/arquivos/ids/163968/kits-0503.webp"
-            alt="Promoção — todo o site com até 72% off"
+            src={livePremiadaBanner}
+            alt="Live Premiada WePink"
             className="w-full object-cover object-center"
             style={{ maxHeight: "220px" }}
             onError={(e) => {
