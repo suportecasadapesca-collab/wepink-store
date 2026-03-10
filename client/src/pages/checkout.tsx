@@ -224,6 +224,7 @@ function OrderBumpCard({
             src={bump.image}
             alt={bump.name}
             className="w-20 h-20 object-cover rounded-sm border border-gray-100"
+            loading="lazy"
           />
           <span className="absolute -top-1.5 -left-1.5 bg-[#FF0080] text-white text-[10px] font-extrabold px-1.5 py-0.5 rounded-sm">
             {bump.discountPct}% OFF
@@ -861,6 +862,7 @@ export default function Checkout() {
                           src={item.image}
                           alt={item.name}
                           className="w-14 h-14 object-cover rounded-sm border border-gray-100"
+                          loading="lazy"
                         />
                         <span className="absolute -top-1.5 -right-1.5 bg-[#FF0080] text-white text-[10px] font-extrabold rounded-full w-5 h-5 flex items-center justify-center">
                           {item.qty}
