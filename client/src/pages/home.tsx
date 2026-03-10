@@ -321,6 +321,7 @@ function CartDrawer({
                       src={item.image}
                       alt={item.name}
                       className="w-16 h-16 object-cover rounded-sm flex-shrink-0 border border-gray-100"
+                      loading="lazy"
                     />
                     <div className="flex-1 min-w-0">
                       <p className="text-xs font-semibold text-gray-800 leading-snug line-clamp-2">
@@ -537,6 +538,7 @@ export default function Home() {
           alt="Promoção Especial WePink"
           className="w-full block"
           style={{ display: "block", maxWidth: "100%", height: "auto" }}
+          fetchPriority="high"
         />
       </section>
 
