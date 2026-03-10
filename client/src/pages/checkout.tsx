@@ -4,7 +4,7 @@ import { QrCode, CheckCircle2, ChevronDown, ShieldCheck, Plus, Check, Zap, Tag, 
 
 import { useCart } from "@/lib/cart-context";
 import type { CartProduct } from "@/lib/cart-context";
-import promoBanner from "@assets/Captura_de_tela_2026-03-04_014232_1773118822151.png";
+import promoBanner from "@assets/Captura_de_tela_2026-03-04_014232_1773118969117.png";
 
 function formatPrice(value: number) {
   return "R$ " + value.toFixed(2).replace(".", ",");
