@@ -4,7 +4,7 @@ import { QrCode, CheckCircle2, ChevronDown, ShieldCheck, Plus, Check, Zap, Tag, 
 
 import { useCart } from "@/lib/cart-context";
 import type { CartProduct } from "@/lib/cart-context";
-import livePremiadaBanner from "@assets/promocoesnainternet-Live-Premiada-We-Pink-Virginia-Fonseca-103_1772734928670.jpg";
+import promoBanner from "@assets/Captura_de_tela_2026-03-04_014232_1773118822151.png";
 
 function formatPrice(value: number) {
   return "R$ " + value.toFixed(2).replace(".", ",");
@@ -576,8 +576,8 @@ export default function Checkout() {
       <div className="max-w-5xl mx-auto px-4 pt-4">
         <div className="w-full overflow-hidden rounded-sm">
           <img
-            src={livePremiadaBanner}
-            alt="Live Premiada WePink"
+            src={promoBanner}
+            alt="Promoção WePink — todo o site com até 72% off"
             className="w-full object-contain"
             onError={(e) => {
               (e.target as HTMLImageElement).style.display = "none";
